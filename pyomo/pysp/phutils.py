@@ -269,24 +269,21 @@ def reset_linearization_variables(instance):
 # a simple utility function to pretty-print an index tuple into a [x,y] form string.
 #
 
-_nontuple = string_types + (int, float)
 def indexToString(index):
-
     if index is None:
         return ''
 
-    # if the input type is a string or an int, then this isn't a tuple!
-    # TODO: Why aren't we just checking for tuple?
-    if isinstance(index, _nontuple):
-        return "["+str(index)+"]"
+    if isinstance(index, tuple):
+        result = "["
+        for i in range(0, len(index)):
+            result += str(index[i])
+            if i != len(index) - 1:
+                result += ","
+        result += "]"
+        return result
 
-    result = "["
-    for i in range(0,len(index)):
-        result += str(index[i])
-        if i != len(index) - 1:
-            result += ","
-    result += "]"
-    return result
+    return "["+str(index)+"]"
+
 
 #
 # a simple utility to determine if a variable name contains an index specification.

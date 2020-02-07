@@ -1030,10 +1030,20 @@ def run_ph(options, ph):
     end_ph_time = time.time()
 
     print("")
-    print("Total PH execution time=%.2f seconds" %(end_ph_time - start_time))
+    PH_execution_time = end_ph_time - start_time
+    print("Total PH execution time=%.2f seconds" % PH_execution_time)
     print("")
+
+    file = open("PH_execution_time.txt", "w")
+    file.write(str(round(PH_execution_time, 2)))
+    file.close()
+
     if options.output_times:
         ph.print_time_stats()
+
+        file = open("PH_execution_time_stats.txt", "w")
+        file.write(ph.print_time_stats())
+        file.close()
 
     ph.save_solution()
 

@@ -798,9 +798,13 @@ def runef(options,
                     plugin.write(manager.scenario_tree, "ef")
 
     print("")
-    print("Total EF execution time=%.2f seconds"
-          % (time.time() - start_time))
+    EF_execution_time = time.time() - start_time
+    print("Total EF execution time=%.2f seconds" % EF_execution_time)
     print("")
+
+    file = open("EF_execution_time.txt", "w")
+    file.write(str(round(EF_execution_time, 2)))
+    file.close()
 
     return 0
 
